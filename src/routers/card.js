@@ -5,8 +5,7 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 
 router.post('/cards', auth, async (req, res) => {
-    // passing the object to save the new task
-    // const tasks = new Task(req.body)
+    // save the new card
     const card = new Card({
         ...req.body,
         author: req.user._id

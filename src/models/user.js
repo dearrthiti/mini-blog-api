@@ -80,7 +80,6 @@ userSchema.methods.generateAuthToken = async function() {
     return token
 }
 
-// Hash before saving
 userSchema.pre('save', async function (next) {
     const user = this
 
@@ -92,13 +91,13 @@ userSchema.pre('save', async function (next) {
 })
 
 
-// delete cards when user deleted
-userSchema.pre('remove', async function (next) {
-    const user = this
-    await Card.deleteMany({ owner: user._id })
+// // delete cards when user deleted
+// userSchema.pre('remove', async function (next) {
+//     const user = this
+//     await Card.deleteMany({ author: user._id })
     
-    next()
-})
+//     next()
+// })
 
 const User = mongoose.model('User', userSchema)
 
