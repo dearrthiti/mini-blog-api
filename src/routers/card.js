@@ -26,8 +26,8 @@ router.get('/cards', auth, async (req, res) => {
     const match = {}
     const sort = {}
 
-    if (req.query.completed) {
-        match.completed = req.query.completed === 'true'
+    if (req.query.status) {
+        match.status = req.query.status === 'true'
     }
 
     if (req.query.sortBy) {
@@ -95,7 +95,7 @@ router.delete('/cards/:id', auth, async (req, res) => {
     const _id = req.params.id
 
     try {
-        const card = await Task.findOne({_id: _id, author: req.user._id})
+        const card = await Card.findOne({_id: _id, author: req.user._id})
 
         if (!card) {
             res.status(400).send()
